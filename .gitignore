@@ -1,6 +1,8 @@
 # Ignore virtual environment directory
 venv/
 
+# ignore .github
+.github/
 # Ignore model files (for example, model files like .npy or .pkl)
 # model/
 # model/*.pkl
