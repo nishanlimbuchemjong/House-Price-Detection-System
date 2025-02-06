@@ -2,13 +2,16 @@
 FROM python:3.13.1
 
 # Step 2: Copy the current directory contents into the container
-COPY . /app
+COPY  requirements.txt /app/
 
 # Step 3: Set the working directory in the container
 WORKDIR /app.1
 
 # Step 4: Install any needed dependencies
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Now copy the rest of the project files
+COPY . /app
 
 # Step 5: Expose port (Flask default port)
 EXPOSE $PORT
