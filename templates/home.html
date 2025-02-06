@@ -4,7 +4,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home page</title>
 </head>
-<body>
-    <h1>This is home page</h1>
+<body> 
+    <h1>House Price Prediction System</h1>
+    <form method="POST" action="/predict">
+        <input type="text" name="LotArea" placeholder="Lot Area" required="required"/><br>
+        <input type="text" name="GrLivArea" placeholder="Gr Liv Area" required="required"><br>
+        <input type="text" name="TotalBsmtSF" placeholder="Total Bsmt SF" required="required"><br>
+        <input type="text" name="1stFlrSF" placeholder="1st Floor SF" required="required"><br>
+        <input type="text" name="2ndFlrSF" placeholder="2nd Floor SF" required="required"><br>
+        <input type="text" name="OverallQual" placeholder="Overall Quality" required="required"><br>
+        <input type="text" name="OverallCond" placeholder="Overall Condition" required="required"><br>
+        <input type="text" name="ExterQual" placeholder="Exterior Quality" required="required"><br>
+        <input type="text" name="BsmtQual" placeholder="Basement Quality" required="required"><br>
+        <input type="text" name="KitchenQual" placeholder="Kitchen Quality" required="required"><br>
+        <input type="text" name="YearRemodAdd" placeholder="Year Remodeled" required="required"><br>
+        <input type="text" name="BedroomAbvGr" placeholder="Bedrooms Above Ground" required="required"><br>
+        <input type="text" name="TotRmsAbvGrd" placeholder="Total Rooms Above Ground" required="required"><br>
+        <input type="text" name="FullBath" placeholder="Full Bath" required="required"><br>
+        <input type="text" name="HalfBath" placeholder="Half Bath" required="required"><br>
+        <input type="text" name="BsmtFullBath" placeholder="Basement Full Bath" required="required"><br>
+        <input type="text" name="GarageCars" placeholder="Garage Cars" required="required"><br>
+        <input type="text" name="GarageArea" placeholder="Garage Area" required="required"><br>
+        <input type="text" name="GarageQual" placeholder="Garage Quality" required="required"><br>
+        <input type="text" name="Fireplaces" placeholder="Fireplaces" required="required"><br>
+        <input type="text" name="WoodDeckSF" placeholder="Wood Deck SF" required="required"><br>
+        <input type="text" name="OpenPorchSF" placeholder="Open Porch SF" required="required"><br>
+        <input type="text" name="PavedDrive" placeholder="Paved Drive" required="required"><br>
+        <button type="submit">Predict</button>
+    </form>
+    
+
+    <br>
+    <br>
+    <h2>Output:</h2>
+    {{prediction_text}}
 </body>
 </html>

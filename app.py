@@ -24,7 +24,7 @@ def home():
 
 @app.route('/predict_api', methods=['POST'])
 def predict_api():
-    # Get the JSON data from the request
+
     data = request.json
 
     # Extract the feature values from the data (make sure this order matches the features used to train the model)
@@ -46,6 +46,55 @@ def predict_api():
     
     # Return the predicted price as a JSON response
     return jsonify(predicted_price[0])
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    feature_names = [
+        'LotArea', 'GrLivArea', 'TotalBsmtSF', '1stFlrSF', '2ndFlrSF', 'OverallQual', 'OverallCond',
+        'ExterQual', 'BsmtQual', 'KitchenQual', 'YearRemodAdd', 'BedroomAbvGr', 'TotRmsAbvGrd',
+        'FullBath', 'HalfBath', 'BsmtFullBath', 'GarageCars', 'GarageArea', 'GarageQual', 'Fireplaces',
+        'WoodDeckSF', 'OpenPorchSF', 'PavedDrive'
+    ]
+    print("Request Form Data:", request.form)  # Debugging line
+    data = [float(x) for x in request.form.values()]
+    print("Data: ", data)
+    final_input = np.array(data).reshape(1, -1)
+    print(final_input)
+    output = house_price_model.predict(final_input)
+    return render_template("home.html", prediction_text="The price prediction is {}".format(output))
+
+# @app.route('/predict', methods=['POST'])
+# def predict():
+#     feature_names = [
+#         'LotArea', 'GrLivArea', 'TotalBsmtSF', '1stFlrSF', '2ndFlrSF', 'OverallQual', 'OverallCond',
+#         'ExterQual', 'BsmtQual', 'KitchenQual', 'YearRemodAdd', 'BedroomAbvGr', 'TotRmsAbvGrd',
+#         'FullBath', 'HalfBath', 'BsmtFullBath', 'GarageCars', 'GarageArea', 'GarageQual', 'Fireplaces',
+#         'WoodDeckSF', 'OpenPorchSF', 'PavedDrive'
+#     ]
+    
+#     # Get the form data
+#     data = [x for x in request.form.values()]
+    
+#     # Debugging: Print the received data
+#     print("Received form data:", data)
+    
+#     # Check if the number of features matches
+#     if len(data) != len(feature_names):
+#         return f"Error: Expected {len(feature_names)} features, but received {len(data)} features.", 400
+    
+#     # Convert the data to float and reshape it
+#     final_input = np.array([float(x) for x in data]).reshape(1, -1)
+    
+#     # Debugging: Check the shape of the final input
+#     print("Final input shape:", final_input.shape)
+    
+#     # Make prediction
+#     output = house_price_model.predict(final_input)
+    
+#     # Debugging: Print the model output
+#     print("Prediction output:", output)
+    
+#     return render_template("home.html", prediction_text="The price prediction is {}".format(output))
 
 if __name__ == '__main__':
     app.run(debug=True)
