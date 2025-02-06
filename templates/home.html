@@ -1,42 +1,123 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home page</title>
+    <title>House Price Prediction System</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 50px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-control {
+            margin-bottom: 15px;
+        }
+        .prediction-result {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
-<body> 
-    <h1>House Price Prediction System</h1>
-    <form method="POST" action="/predict">
-        <input type="text" name="LotArea" placeholder="Lot Area" required="required"/><br>
-        <input type="text" name="GrLivArea" placeholder="Gr Liv Area" required="required"><br>
-        <input type="text" name="TotalBsmtSF" placeholder="Total Bsmt SF" required="required"><br>
-        <input type="text" name="1stFlrSF" placeholder="1st Floor SF" required="required"><br>
-        <input type="text" name="2ndFlrSF" placeholder="2nd Floor SF" required="required"><br>
-        <input type="text" name="OverallQual" placeholder="Overall Quality" required="required"><br>
-        <input type="text" name="OverallCond" placeholder="Overall Condition" required="required"><br>
-        <input type="text" name="ExterQual" placeholder="Exterior Quality" required="required"><br>
-        <input type="text" name="BsmtQual" placeholder="Basement Quality" required="required"><br>
-        <input type="text" name="KitchenQual" placeholder="Kitchen Quality" required="required"><br>
-        <input type="text" name="YearRemodAdd" placeholder="Year Remodeled" required="required"><br>
-        <input type="text" name="BedroomAbvGr" placeholder="Bedrooms Above Ground" required="required"><br>
-        <input type="text" name="TotRmsAbvGrd" placeholder="Total Rooms Above Ground" required="required"><br>
-        <input type="text" name="FullBath" placeholder="Full Bath" required="required"><br>
-        <input type="text" name="HalfBath" placeholder="Half Bath" required="required"><br>
-        <input type="text" name="BsmtFullBath" placeholder="Basement Full Bath" required="required"><br>
-        <input type="text" name="GarageCars" placeholder="Garage Cars" required="required"><br>
-        <input type="text" name="GarageArea" placeholder="Garage Area" required="required"><br>
-        <input type="text" name="GarageQual" placeholder="Garage Quality" required="required"><br>
-        <input type="text" name="Fireplaces" placeholder="Fireplaces" required="required"><br>
-        <input type="text" name="WoodDeckSF" placeholder="Wood Deck SF" required="required"><br>
-        <input type="text" name="OpenPorchSF" placeholder="Open Porch SF" required="required"><br>
-        <input type="text" name="PavedDrive" placeholder="Paved Drive" required="required"><br>
-        <button type="submit">Predict</button>
-    </form>
-    
+<body>
 
-    <br>
-    <br>
-    <h2>Output:</h2>
-    {{prediction_text}}
+    <div class="container">
+        <h1 class="text-center mb-4" style="color:#0d6efd">House Price Prediction</h1>
+        <form method="POST" action="/predict">
+            <div class="mb-3">
+                <input type="text" name="LotArea" class="form-control" placeholder="Lot Area" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="GrLivArea" class="form-control" placeholder="Gr Liv Area" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="TotalBsmtSF" class="form-control" placeholder="Total Bsmt SF" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="1stFlrSF" class="form-control" placeholder="1st Floor SF" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="2ndFlrSF" class="form-control" placeholder="2nd Floor SF" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="OverallQual" class="form-control" placeholder="Overall Quality" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="OverallCond" class="form-control" placeholder="Overall Condition" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="ExterQual" class="form-control" placeholder="Exterior Quality" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="BsmtQual" class="form-control" placeholder="Basement Quality" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="KitchenQual" class="form-control" placeholder="Kitchen Quality" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="YearRemodAdd" class="form-control" placeholder="Year Remodeled" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="BedroomAbvGr" class="form-control" placeholder="Bedrooms Above Ground" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="TotRmsAbvGrd" class="form-control" placeholder="Total Rooms Above Ground" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="FullBath" class="form-control" placeholder="Full Bath" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="HalfBath" class="form-control" placeholder="Half Bath" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="BsmtFullBath" class="form-control" placeholder="Basement Full Bath" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="GarageCars" class="form-control" placeholder="Garage Cars" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="GarageArea" class="form-control" placeholder="Garage Area" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="GarageQual" class="form-control" placeholder="Garage Quality" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="Fireplaces" class="form-control" placeholder="Fireplaces" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="WoodDeckSF" class="form-control" placeholder="Wood Deck SF" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="OpenPorchSF" class="form-control" placeholder="Open Porch SF" required>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="PavedDrive" class="form-control" placeholder="Paved Drive" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Predict</button>
+        </form>
+        <br>
+        <br>
+        {% if prediction_text %}
+            <h2 style="color:rgb(10, 97, 10)">Result:</h2>
+            <div class="prediction-result">
+                <p>{{ prediction_text }}</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap 5 JS & Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
